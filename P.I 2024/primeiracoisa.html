@@ -1,0 +1,36 @@
+<body>
+    <h1><strong>meu nome é guxtas</strong></h1>
+    <h2><em>ta ligado que os guri ta avançado né cpx</em></h2>
+
+    <!-- Input field for email -->
+    <input type="text" id="emailInput" placeholder="Digite seu email" onfocus="limparplaceholder">
+    <button onclick="salvardados()">Salvar</button>
+    <br>
+    <input type="text" id="senhaInput" placeholder="Digite sua senha" onfocus="limparplaceholder()">
+    <br>
+
+    <!-- Display saved email and senha -->
+    <h3>Dados Salvos:</h3>
+    <p id="dados"></p>
+
+
+    <script>
+        let email;
+        let senha;
+
+        function salvardados() {
+            email = document.getElementById("emailInput").value;
+            senha = document.getElementById("senhaInput").value;
+
+            document.getElementById("dados").innerText = `Email: ${email}, Senha: ${senha}`;
+            document.getElementById("emailInput").value = ''
+            document.getElementById("senhaInput").value = ''
+        }
+        function limparplaceholder(){
+            document.getElementById("emailInput").placeholder = ''
+            document.getElementById("senhaInput").placeholder = ''
+        }
+    </script>
+</body>
+
+
