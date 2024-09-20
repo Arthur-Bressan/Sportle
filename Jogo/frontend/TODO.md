@@ -1,6 +1,6 @@
 # To Do:
 
-###### Modo diário - arthur
+###### ~~Modo diário - arthur~~
 
 ###### Modo infinito - arthur
 
@@ -11,3 +11,5 @@
 # Doing:
 
 ###### Responsividade
+
+###### ~~Clear Cookies when past midnight~~

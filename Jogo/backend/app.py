@@ -6,10 +6,10 @@ from datetime import datetime
 import requests
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})
+CORS(app)
 
 def get_db_connection():
-    conn = sqlite3.connect('backend\dados.db')
+    conn = sqlite3.connect('backend/dados.db')
     conn.row_factory = sqlite3.Row
     return conn
 
@@ -43,12 +43,16 @@ def create_random_character():
         'TIMESTAMP': timestamp
     })
 
+# Função para inicializar o jogo
 def initialize_game():
     with app.test_request_context():
         global random_character
         response = create_random_character()
         random_character = response.get_json().get('random_character')
 
+hora_atual = datetime.now().strftime("%H:%M")
+
+# if hora_atual == "10:24": 
 initialize_game()
 
 @app.route('/characters/<name>', methods=['GET'])
@@ -88,7 +92,6 @@ def verify_guess():
 
 
     if guessed_character_id == random_character_id:
-        initialize_game()
         return jsonify({"result": True, "age": "equal", "age_content": guessed_character_age, "country": True, "country_content": guessed_character_country, "sex": True, "sex_content": guessed_character_sex, "sport": True, "sport_content": guessed_character_sport, "status": True, "status_content": guessed_character_status})
     else:
         if random_character_sex == guessed_character_sex:
