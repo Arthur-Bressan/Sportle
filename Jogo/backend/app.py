@@ -17,6 +17,14 @@ def get_db_connection():
 def root_page():
     return "Online!"
 
+@app.route('/characters/get-hint', methods=['GET'])
+def get_hint1():
+    conn = get_db_connection()
+    hint1 = conn.execute('SELECT hint1, hint2, hint3, nickname FROM characters WHERE name = ?', (random_character, )).fetchall()
+    conn.close()
+    hints = [{'hint1': row['hint1'], 'hint2': row['hint2'], 'hint3': row['hint3'], 'nickname': row['nickname']} for row in hint1]
+    return jsonify(hints)
+
 @app.route('/characters', methods=['GET'])
 def get_characters():
     conn = get_db_connection()
@@ -45,14 +53,14 @@ def create_random_character():
 
 # Função para inicializar o jogo
 def initialize_game():
-    with app.test_request_context():
-        global random_character
-        response = create_random_character()
-        random_character = response.get_json().get('random_character')
+     with app.test_request_context():
+         global random_character
+         response = create_random_character()
+         random_character = response.get_json().get('random_character')
 
-hora_atual = datetime.now().strftime("%H:%M")
+# hora_atual = datetime.now().strftime("%H:%M")
 
-# if hora_atual == "10:24": 
+# # # if hora_atual == "10:24": 
 initialize_game()
 
 @app.route('/characters/<name>', methods=['GET'])
