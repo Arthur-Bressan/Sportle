@@ -4,7 +4,7 @@
 
 ###### Modo infinito - arthur
 
-###### Hospedagem - luiz e gustavo
+###### Hospedagem - gustavo
 
 ###### Armazém de dados de partidas - lucas e h2
 
